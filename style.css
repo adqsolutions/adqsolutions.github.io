@@ -207,6 +207,10 @@ textarea:focus-visible {
   transition: var(--transition);
 }
 
+.navbar .container {
+  max-width: 1120px;
+}
+
 .nav-container {
   display: flex;
   justify-content: space-between;
