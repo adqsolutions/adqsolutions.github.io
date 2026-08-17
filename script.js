@@ -7,12 +7,28 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     initMobileNav();
+    initNavbarScrollShadow();
     initContactForm();
     initScrollReveal();
     initBackToTop();
     initActiveNavHighlight();
     initFooterYear();
   });
+
+  /* ---------------------------------------------------------------
+     Navbar: add elevated shadow once the page is scrolled
+  --------------------------------------------------------------- */
+  function initNavbarScrollShadow() {
+    var navbar = document.querySelector('.navbar');
+    if (!navbar) return;
+
+    var updateShadow = function () {
+      navbar.classList.toggle('is-scrolled', window.scrollY > 8);
+    };
+
+    updateShadow();
+    window.addEventListener('scroll', updateShadow, { passive: true });
+  }
 
   /* ---------------------------------------------------------------
      Mobile Navigation Toggle

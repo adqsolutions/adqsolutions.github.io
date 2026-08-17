@@ -200,11 +200,18 @@ textarea:focus-visible {
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   z-index: 1000;
-  border-bottom: 1px solid var(--card-border);
-  transition: var(--transition);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.02);
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar.is-scrolled {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 8px 24px -12px rgba(10, 25, 47, 0.18);
 }
 
 .navbar .container {
@@ -215,7 +222,7 @@ textarea:focus-visible {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 90px;
+  height: 84px;
 }
 
 .brand-wrapper {
@@ -223,48 +230,117 @@ textarea:focus-visible {
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  gap: 8px;
+  gap: 6px;
 }
 
 .brand-img {
-  height: 55px;
+  height: 52px;
   width: auto;
   object-fit: contain;
 }
 
 .brand-tagline {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.45rem;
+  font-size: 0.42rem;
   font-weight: 800;
-  color: var(--primary);
-  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  letter-spacing: 0.14em;
+  padding-top: 4px;
+  border-top: 1px solid var(--card-border);
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 0.4rem;
 }
 
-.nav-links a {
-  font-size: 0.95rem;
-  font-weight: 500;
+.nav-links a:not(.nav-cta) {
+  position: relative;
+  font-size: 0.92rem;
+  font-weight: 600;
   color: var(--text-muted);
+  padding: 0.6rem 0.9rem;
+}
+
+.nav-links a:not(.nav-cta)::after {
+  content: '';
+  position: absolute;
+  left: 0.9rem;
+  right: 0.9rem;
+  bottom: 0.35rem;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
 }
 
 .nav-links a:hover,
 .nav-links a[aria-current="page"] {
-  color: var(--accent);
+  color: var(--primary);
+}
+
+.nav-links a:hover::after,
+.nav-links a[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: #FFF;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+  padding: 0.65rem 1.5rem;
+  margin-left: 0.75rem;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(0, 86, 179, 0.22);
+  transition: var(--transition);
+}
+
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -4px rgba(0, 86, 179, 0.38);
 }
 
 .menu-toggle {
   display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
   background: none;
   border: none;
-  font-size: 1.5rem;
   cursor: pointer;
-  color: var(--primary);
-  line-height: 1;
+  padding: 0;
+}
+
+.menu-toggle-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* -------------------------------------------------------------
@@ -867,6 +943,7 @@ textarea.form-control {
 
 .footer-brand .brand-tagline {
   color: #E2E8F0;
+  border-top-color: rgba(255, 255, 255, 0.15);
 }
 
 .footer-brand p {
@@ -1077,7 +1154,7 @@ textarea.form-control {
   .nav-links {
     display: none;
     position: absolute;
-    top: 90px;
+    top: 84px;
     left: 0;
     width: 100%;
     background: var(--bg-white);
@@ -1090,8 +1167,15 @@ textarea.form-control {
   .nav-links.active {
     display: flex;
   }
+  .nav-links a:not(.nav-cta)::after {
+    display: none;
+  }
+  .nav-cta {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
   .menu-toggle {
-    display: block;
+    display: flex;
   }
   .hero-content h1 {
     font-size: 2.25rem;
