@@ -57,12 +57,10 @@
 
   /* ---------------------------------------------------------------
      Contact Form: client-side validation + submission handling
-     NOTE: This demo submits nowhere by default. To go live, either:
-       1) Point the <form> at a form backend (e.g. Formspree/Getform)
-          and set FORM_ENDPOINT below, or
-       2) Wire up your own server endpoint and replace submitForm().
+     Submissions are sent to a Google Apps Script Web App, which
+     writes each inquiry as a new row in a connected Google Sheet.
   --------------------------------------------------------------- */
-  var FORM_ENDPOINT = ''; // e.g. 'https://formspree.io/f/your-id'
+  var FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxUWf4CGuAys2kRc2xgfUQwrmqRRfLp9Z3fzD8Tg1jHuMpLC5efVTU_BwzSq82BfHcl/exec';
 
   function initContactForm() {
     var form = document.getElementById('leadForm');
@@ -72,6 +70,7 @@
     var fields = {
       fullName: { el: document.getElementById('fullName'), label: 'full name' },
       companyName: { el: document.getElementById('companyName'), label: 'company name' },
+      phoneNumber: { el: document.getElementById('phoneNumber'), label: 'contact number' },
       emailAddr: { el: document.getElementById('emailAddr'), label: 'business email' }
     };
 
@@ -85,6 +84,14 @@
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+
+      // Honeypot check: if this hidden field is filled, silently drop (bot).
+      var honeypot = document.getElementById('website');
+      if (honeypot && honeypot.value.trim() !== '') {
+        showStatus(status, 'success', 'Thank you! Your inquiry has been received. We will contact you shortly.');
+        form.reset();
+        return;
+      }
 
       var isValid = true;
       Object.keys(fields).forEach(function (key) {
@@ -111,6 +118,8 @@
         message = 'Please enter your ' + field.label + '.';
       } else if (key === 'emailAddr' && !isValidEmail(value)) {
         message = 'Please enter a valid email address.';
+      } else if (key === 'phoneNumber' && !isValidPhone(value)) {
+        message = 'Please enter a valid contact number.';
       }
 
       if (message) {
@@ -126,6 +135,12 @@
 
     function isValidEmail(value) {
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    }
+
+    function isValidPhone(value) {
+      // Accepts digits, spaces, +, -, () — requires at least 7 digits total.
+      var digitCount = (value.match(/\d/g) || []).length;
+      return /^[0-9+\-()\s]+$/.test(value) && digitCount >= 7;
     }
   }
 
@@ -145,18 +160,34 @@
     };
 
     if (FORM_ENDPOINT) {
-      var formData = new FormData(form);
+      // Your Apps Script's doPost reads JSON.parse(e.postData.contents),
+      // so we must send a raw JSON body — NOT FormData/multipart.
+      // Content-Type: text/plain keeps this a CORS "simple request"
+      // (Apps Script doesn't handle preflight OPTIONS requests).
+      var payload = {
+        fullName: form.fullName.value.trim(),
+        companyName: form.companyName.value.trim(),
+        phoneNumber: form.phoneNumber.value.trim(),
+        emailAddr: form.emailAddr.value.trim(),
+        serviceInterest: form.serviceInterest.value,
+        message: form.message.value.trim(),
+        source: 'adqsolutions.in website',
+        timestamp: new Date().toISOString()
+      };
+
+      // Google Apps Script Web Apps don't return CORS headers, so the
+      // response is opaque in the browser. We send with mode: 'no-cors'
+      // and treat a resolved fetch (no network error) as success — this
+      // is the standard pattern for posting to Apps Script from a
+      // static site. The data still lands correctly in the Google Sheet.
       fetch(FORM_ENDPOINT, {
         method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
       })
-        .then(function (res) {
-          if (res.ok) {
-            finish(true, 'Thank you! Your inquiry has been received. We will contact you shortly.');
-          } else {
-            finish(false, 'Something went wrong sending your message. Please email us directly at anik.debnath@hotmail.com.');
-          }
+        .then(function () {
+          finish(true, 'Thank you! Your inquiry has been received. We will contact you shortly.');
         })
         .catch(function () {
           finish(false, 'Network error — please try again or email anik.debnath@hotmail.com directly.');
