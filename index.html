@@ -99,7 +99,7 @@
           "itemOffered": {
             "@type": "Service",
             "name": "Training & Development",
-            "description": "Workforce training in Global 8D Problem Solving, IATF 16949 and ISO 9001 Internal Auditor courses, SPC, 5S and Kaizen."
+            "description": "Workforce training in Internal Auditor courses, APQP, PPAP, FMEA, SPC, MSA, Manufacturing Process Audit, Problem Solving, G8D, and 7 QC Tools."
           }
         },
         {
@@ -305,7 +305,7 @@
     .modal-container {
       background: #FFFFFF;
       width: 100%;
-      max-width: 480px;
+      max-width: 520px;
       padding: 2rem;
       border-radius: 12px;
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
@@ -339,6 +339,11 @@
     .modal-close:hover {
       color: var(--error);
     }
+    .modal-body {
+      max-height: 60vh;
+      overflow-y: auto;
+      padding-right: 0.5rem;
+    }
     .modal-body ul {
       list-style: none;
       padding: 0;
@@ -349,7 +354,7 @@
       margin-bottom: 0.35rem;
       background: #F8FAFC;
       border-radius: 6px;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: var(--text-dark);
       border-left: 3px solid var(--accent);
     }
@@ -557,9 +562,9 @@
             <h3>Training &amp; Development</h3>
             <p>Action-oriented workforce training designed to build capability and standardize excellence across your manufacturing operations.</p>
             <ul>
-              <li>Global 8D (G8D) Problem Solving</li>
-              <li>IATF 16949 Internal Auditor</li>
-              <li>ISO 9001 Internal Auditor</li>
+              <li>Internal Auditor Course on ISO 9001</li>
+              <li>Global 8 Disciplines (G8D)</li>
+              <li>Statistical Process Control (SPC)</li>
             </ul>
             <button type="button" class="view-more-btn" id="openTrainingModal">All Training Modules...</button>
           </div>
@@ -610,7 +615,7 @@
       </div>
     </section>
 
-    <!-- Floating Window Modal for All Training Modules -->
+    <!-- Floating Window Modal for All Training Modules (Maintained in Requested Sequence) -->
     <div class="modal-overlay" id="trainingModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <div class="modal-container">
         <div class="modal-header">
@@ -619,16 +624,21 @@
         </div>
         <div class="modal-body">
           <ul>
-            <li>5S</li>
-            <li>7QC Tools</li>
-            <li>APQP</li>
-            <li>Global 8D (G8D) Problem Solving</li>
-            <li>IATF 16949 Internal Auditor</li>
-            <li>ISO 9001 Internal Auditor</li>
-            <li>Kaizen</li>
-            <li>Quality Core Tools</li>
-            <li>QMS Basics</li>
+            <li>Internal Auditor Course on ISO 9001</li>
+            <li>Internal Auditor Course on IATF16949</li>
+            <li>Internal Auditor Course on ISO 14001</li>
+            <li>Internal Auditor Course on ISO45001</li>
+            <li>Internal Auditor Course on ISO50001</li>
+            <li>Advanced Product Quality Planning (APQP)</li>
+            <li>Production Part Approval Process (PPAP)</li>
+            <li>Failure Modes and Effects Analysis (FMEA)</li>
             <li>Statistical Process Control (SPC)</li>
+            <li>Measurement System Analysis (MSA)</li>
+            <li>Manufacturing Process Audit</li>
+            <li>Problem Solving Techniques</li>
+            <li>Global 8 Disciplines (G8D)</li>
+            <li>7 QC Tools – Basic/ Old</li>
+            <li>7 QC Tools – New</li>
           </ul>
         </div>
       </div>
@@ -897,7 +907,7 @@
             <div class="form-group">
               <label for="serviceInterest">Area of Interest</label>
               <select id="serviceInterest" name="serviceInterest" class="form-control">
-                <option value="dashboards-mis">QA Dashboards / MIS</option>
+                <option value="dashboards-mis">Dashboards / MIS</option>
                 <option value="qa-web-portals">QA Web Portals</option>
                 <option value="qms-audit">QMS Audit</option>
                 <option value="qms-digital">QMS Digitalization</option>
