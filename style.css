@@ -228,7 +228,7 @@ textarea:focus-visible {
 .brand-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   text-decoration: none;
   gap: 6px;
 }
@@ -937,7 +937,6 @@ textarea.form-control {
 }
 
 .footer-brand .brand-wrapper {
-  align-items: flex-start;
   margin-bottom: 1.25rem;
 }
 
