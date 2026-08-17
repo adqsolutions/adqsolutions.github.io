@@ -305,14 +305,33 @@
     .modal-container {
       background: #FFFFFF;
       width: 100%;
-      max-width: 480px;
-      padding: 2rem;
+      max-width: 850px;
+      padding: 2rem 2.5rem;
       border-radius: 12px;
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
       position: relative;
       transform: translateY(20px);
       transition: transform 0.3s ease;
+      max-height: 90vh;
+      overflow-y: auto;
     }
+    
+    /* Custom Scrollbar for Modal */
+    .modal-container::-webkit-scrollbar {
+      width: 8px;
+    }
+    .modal-container::-webkit-scrollbar-track {
+      background: #F1F5F9;
+      border-radius: 4px;
+    }
+    .modal-container::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 4px;
+    }
+    .modal-container::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+
     .modal-overlay.active .modal-container {
       transform: translateY(0);
     }
@@ -320,38 +339,95 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       border-bottom: 1px solid #E2E8F0;
-      padding-bottom: 0.75rem;
+      padding-bottom: 1rem;
+      position: sticky;
+      top: 0;
+      background: #FFFFFF;
+      z-index: 10;
     }
     .modal-header h4 {
-      font-size: 1.2rem;
+      font-size: 1.35rem;
       color: var(--primary);
+      margin: 0;
     }
     .modal-close {
       background: none;
       border: none;
-      font-size: 1.5rem;
+      font-size: 1.75rem;
       cursor: pointer;
       color: var(--text-muted);
       line-height: 1;
+      transition: color 0.2s ease;
     }
     .modal-close:hover {
       color: var(--error);
     }
-    .modal-body ul {
+
+    /* Enhanced Aesthetically Professional Training Grid */
+    .modal-body .training-grid {
       list-style: none;
       padding: 0;
       margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+      align-items: start;
     }
-    .modal-body li {
-      padding: 0.5rem 0.75rem;
-      margin-bottom: 0.35rem;
-      background: #F8FAFC;
-      border-radius: 6px;
-      font-size: 0.95rem;
-      color: var(--text-dark);
-      border-left: 3px solid var(--accent);
+    
+    .modal-body .training-grid li {
+      padding: 1rem;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      border-left: 4px solid var(--accent);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .modal-body .training-grid li:hover {
+      box-shadow: 0 10px 20px rgba(0, 86, 179, 0.08);
+      transform: translateY(-3px);
+      border-color: #CBD5E1;
+      border-left-color: #004494;
+    }
+    
+    .module-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--primary);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      line-height: 1.3;
+    }
+    
+    .module-title svg {
+      flex-shrink: 0;
+      color: var(--accent);
+      margin-top: 0.1rem;
+      width: 16px;
+      height: 16px;
+    }
+    
+    .module-desc {
+      font-size: 0.8rem;
+      color: #64748B;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      line-height: 1.5;
+    }
+    
+    .modal-body .training-grid li:hover .module-desc {
+      max-height: 150px;
+      opacity: 1;
+      margin-top: 0.75rem;
     }
 
     /* Compact & Visually Beautiful Customer Form Styling */
@@ -557,9 +633,9 @@
             <h3>Training &amp; Development</h3>
             <p>Action-oriented workforce training designed to build capability and standardize excellence across your manufacturing operations.</p>
             <ul>
-              <li>Global 8D (G8D) Problem Solving</li>
-              <li>IATF 16949 Internal Auditor</li>
-              <li>ISO 9001 Internal Auditor</li>
+              <li>Internal Auditor Course on ISO 9001</li>
+              <li>Global 8 Disciplines (G8D)</li>
+              <li>Statistical Process Control (SPC)</li>
             </ul>
             <button type="button" class="view-more-btn" id="openTrainingModal">All Training Modules...</button>
           </div>
@@ -618,17 +694,112 @@
           <button type="button" class="modal-close" id="closeTrainingModal" aria-label="Close modal">&times;</button>
         </div>
         <div class="modal-body">
-          <ul>
-            <li>5S</li>
-            <li>7QC Tools</li>
-            <li>APQP</li>
-            <li>Global 8D (G8D) Problem Solving</li>
-            <li>IATF 16949 Internal Auditor</li>
-            <li>ISO 9001 Internal Auditor</li>
-            <li>Kaizen</li>
-            <li>Quality Core Tools</li>
-            <li>QMS Basics</li>
-            <li>Statistical Process Control (SPC)</li>
+          <ul class="training-grid">
+            <li>
+              <div class="module-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                Internal Auditor Course on ISO 9001
+              </div>
+              <div class="module-desc">Learn principles and practices of auditing Quality Management Systems against ISO 9001 requirements.</div>
+            </li>
+            <li>
+              <div class="module-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                Internal Auditor Course on IATF16949
+              </div>
+              <div class="module-desc">Master automotive QMS auditing techniques aligned with IATF 16949 standards and customer-specific requirements.</div>
+            </li>
+            <li>
+              <div class="module-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                Internal Auditor Course on ISO 14001
+              </div>
+              <div class="module-desc">Develop specialized skills to evaluate and audit Environmental Management Systems for sustainable compliance.</div>
+            </li>
+            <li>
+              <div class="module-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                Internal Auditor Course on ISO45001
+              </div>
+              <div class="module-desc">Understand how to effectively audit Occupational Health and Safety management systems.</div>
+            </li>
+            <li>
+              <div class="module-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                Internal Auditor Course on ISO50001
+              </div>
+              <div class="module-desc">Learn frameworks for auditing Energy Management Systems to drive process and energy efficiency.</div>
+            </li>
+            <li>
+              <div class="module-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                Advanced Product Quality Planning (APQP)
+              </div>
+              <div class="module-desc">A structured method for defining and establishing the necessary steps to ensure a product satisfies the customer.</div>
+            </li>
+            <li>
+              <div class="module-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                Production Part Approval Process (PPAP)
+              </div>
+              <div class="module-desc">Standardized risk-mitigation process to ensure suppliers understand all customer engineering design records and specifications.</div>
+            </li>
+            <li>
+              <div class="module-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                Failure Modes and Effects Analysis (FMEA)
+              </div>
+              <div class="module-desc">A systematic, proactive method for evaluating a process to identify where and how it might fail.</div>
+            </li>
+            <li>
+              <div class="module-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                Statistical Process Control (SPC)
+              </div>
+              <div class="module-desc">Use statistical techniques to control a process or production method, reducing variation and increasing efficiency.</div>
+            </li>
+            <li>
+              <div class="module-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                Measurement System Analysis (MSA)
+              </div>
+              <div class="module-desc">Mathematical method of determining the amount of variation that exists within a specific measurement process.</div>
+            </li>
+            <li>
+              <div class="module-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                Manufacturing Process Audit
+              </div>
+              <div class="module-desc">A deep dive into evaluating shop-floor manufacturing processes for efficiency, compliance, and defect prevention.</div>
+            </li>
+            <li>
+              <div class="module-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                Problem Solving Techniques
+              </div>
+              <div class="module-desc">Master essential analytical frameworks like 5-Why and Fishbone to identify root causes and implement lasting solutions.</div>
+            </li>
+            <li>
+              <div class="module-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                Global 8 Disciplines (G8D)
+              </div>
+              <div class="module-desc">A comprehensive, structured problem-solving methodology used heavily by engineers to isolate and permanently correct recurring defects.</div>
+            </li>
+            <li>
+              <div class="module-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                7 QC Tools – Basic/ Old
+              </div>
+              <div class="module-desc">Fundamental graphical techniques (e.g., Pareto, Histograms, Check Sheets) critical for troubleshooting quality-related issues.</div>
+            </li>
+            <li>
+              <div class="module-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                7 QC Tools – New
+              </div>
+              <div class="module-desc">Advanced management and planning tools used to organize subjective data, structure conceptual ideas, and solve complex problems.</div>
+            </li>
           </ul>
         </div>
       </div>
