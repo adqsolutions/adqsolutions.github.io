@@ -844,30 +844,37 @@ textarea:focus-visible {
 }
 
 /* -------------------------------------------------------------
+   Decorative section watermarks (real DOM elements, not pseudo-
+   elements — avoids generated-content compositing/repaint quirks
+   in some browsers on sections further down the page).
+------------------------------------------------------------- */
+.section-watermark {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+  z-index: 0;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.wm-testimonials-quote {
+  top: -25px;
+  right: -25px;
+  width: 210px;
+  height: 210px;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%230A192F%22%20stroke-width%3D%221.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M21%2015a2%202%200%2001-2%202H7l-4%204V5a2%202%200%20012-2h14a2%202%200%20012%202z%22/%3E%3C/svg%3E");
+}
+
+/* -------------------------------------------------------------
    Testimonials Section
 ------------------------------------------------------------- */
 .testimonials {
   background-color: var(--bg-white);
   position: relative;
   overflow: hidden;
-}
-
-.testimonials::before {
-  content: '';
-  position: absolute;
-  top: -25px;
-  right: -25px;
-  width: 210px;
-  height: 210px;
-  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%230A192F%22%20stroke-width%3D%221.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M21%2015a2%202%200%2001-2%202H7l-4%204V5a2%202%200%20012-2h14a2%202%200%20012%202z%22/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-size: contain;
-  opacity: 0.06;
-  pointer-events: none;
-  z-index: 0;
-  transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
 }
 
 .testimonials .container {
@@ -1458,12 +1465,12 @@ textarea.form-control {
     height: 100px;
     opacity: 0.07;
   }
-  .testimonials::before {
+  .wm-testimonials-quote {
     top: -12px;
     right: -12px;
     width: 110px;
     height: 110px;
-    opacity: 0.07;
+    opacity: 0.09;
   }
   .contact::before {
     bottom: -18px;

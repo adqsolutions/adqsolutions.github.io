@@ -532,34 +532,25 @@
       position: relative;
       overflow: hidden;
     }
-    .faq::before {
-      content: '';
-      position: absolute;
-      bottom: -35px;
+    .wm-faq-help {
+      top: -35px;
       right: -35px;
       width: 260px;
       height: 260px;
+      opacity: 0.08;
       background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%230A192F%22%20stroke-width%3D%221.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2210%22/%3E%3Cpath%20d%3D%22M9.09%209a3%203%200%20015.83%201c0%202-3%203-3%203%22/%3E%3Cline%20x1%3D%2212%22%20y1%3D%2217%22%20x2%3D%2212.01%22%20y2%3D%2217%22/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-size: contain;
-      opacity: 0.06;
-      pointer-events: none;
-      z-index: 0;
-      transform: translateZ(0);
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
     }
     .faq .container {
       position: relative;
       z-index: 1;
     }
     @media (max-width: 640px) {
-      .faq::before {
-        bottom: -18px;
+      .wm-faq-help {
+        top: -18px;
         right: -18px;
         width: 130px;
         height: 130px;
-        opacity: 0.08;
+        opacity: 0.1;
       }
     }
   </style>
@@ -948,6 +939,7 @@
          Testimonials Section
     ============================================================== -->
     <section class="testimonials section-padding" id="testimonials" aria-labelledby="testimonials-heading">
+      <div class="section-watermark wm-testimonials-quote" aria-hidden="true"></div>
       <div class="container">
         <div class="section-header reveal">
           <span class="badge">Client Impact</span>
@@ -996,6 +988,7 @@
          FAQ Section
     ============================================================== -->
     <section class="faq section-padding" id="faq" aria-labelledby="faq-heading">
+      <div class="section-watermark wm-faq-help" aria-hidden="true"></div>
       <div class="container">
         <div class="section-header reveal">
           <span class="badge">Common Questions</span>
