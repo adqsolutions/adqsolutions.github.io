@@ -527,16 +527,27 @@
       line-height: 1.6;
     }
 
+    .faq-item p a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .faq-item p a:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+
     /* FAQ section watermark */
     .faq {
       position: relative;
       overflow: hidden;
     }
     .wm-faq-help {
-      top: -35px;
-      right: -35px;
-      width: 260px;
-      height: 260px;
+      top: 24px;
+      right: 24px;
+      width: 140px;
+      height: 140px;
       opacity: 0.08;
       background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%230A192F%22%20stroke-width%3D%221.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2210%22/%3E%3Cpath%20d%3D%22M9.09%209a3%203%200%20015.83%201c0%202-3%203-3%203%22/%3E%3Cline%20x1%3D%2212%22%20y1%3D%2217%22%20x2%3D%2212.01%22%20y2%3D%2217%22/%3E%3C/svg%3E");
     }
@@ -546,10 +557,10 @@
     }
     @media (max-width: 640px) {
       .wm-faq-help {
-        top: -18px;
-        right: -18px;
-        width: 130px;
-        height: 130px;
+        top: 14px;
+        right: 14px;
+        width: 85px;
+        height: 85px;
         opacity: 0.1;
       }
     }
@@ -594,6 +605,8 @@
          Hero Section
     ============================================================== -->
     <section class="hero" aria-labelledby="hero-heading">
+      <div class="section-watermark wm-hero-gear" aria-hidden="true"></div>
+      <div class="section-watermark wm-hero-trend" aria-hidden="true"></div>
       <div class="container hero-grid">
         <div class="hero-content">
           <span class="badge">Precision Quality Engineering</span>
@@ -836,6 +849,7 @@
          Digital QA Solutions Section
     ============================================================== -->
     <section class="digital-solutions section-padding" id="digital" aria-labelledby="digital-heading">
+      <div class="section-watermark wm-digital-grid" aria-hidden="true"></div>
       <div class="container">
         <div class="section-header reveal">
           <span class="badge" style="background: rgba(255, 255, 255, 0.15); color: #FFF;">Tech-Driven Assurance</span>
@@ -892,6 +906,8 @@
          Leadership & Founder Section
     ============================================================== -->
     <section class="founder section-padding" id="about" aria-labelledby="founder-heading">
+      <div class="section-watermark wm-founder-trend" aria-hidden="true"></div>
+      <div class="section-watermark wm-founder-badge" aria-hidden="true"></div>
       <div class="container">
         <div class="founder-grid">
           <div class="founder-image-card reveal">
@@ -1015,7 +1031,7 @@
           </details>
           <details class="faq-item reveal">
             <summary>How do I get a quote for QA consulting or training?</summary>
-            <p>Fill out the inquiry form below, WhatsApp us at +91-8976153217, or email anik.debnath@hotmail.com with your requirements, and we'll respond with a tailored proposal.</p>
+            <p>Fill out the inquiry form below, WhatsApp us at <a href="https://wa.me/918976153217" target="_blank" rel="noopener noreferrer">+91-8976153217</a>, or email <a href="mailto:anik.debnath@hotmail.com">anik.debnath@hotmail.com</a> with your requirements, and we'll respond with a tailored proposal.</p>
           </details>
         </div>
       </div>
@@ -1025,6 +1041,8 @@
          Contact Section
     ============================================================== -->
     <section class="contact section-padding" id="contact" aria-labelledby="contact-heading">
+      <div class="section-watermark wm-contact-badge" aria-hidden="true"></div>
+      <div class="section-watermark wm-contact-phone" aria-hidden="true"></div>
       <div class="container">
         <div class="contact-grid">
           <div class="contact-info reveal">
@@ -1123,6 +1141,7 @@
        Footer
   ============================================================== -->
   <footer class="footer">
+    <div class="section-watermark wm-footer-gear" aria-hidden="true"></div>
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
@@ -1137,7 +1156,7 @@
 
           <!-- Social Icons -->
           <div class="social-icons">
-            <a href="https://wa.me/918976153217" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="Chat with us on WhatsApp">
+            <a href="https://wa.me/918976153217" target="_blank" rel="noopener noreferrer" class="social-icon-link social-icon-whatsapp" aria-label="Chat with us on WhatsApp">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
             </a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="Visit our LinkedIn page">
@@ -1172,7 +1191,7 @@
           <ul class="footer-contact-list">
             <li>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-              <span>Nagpur, Maharashtra<br>Serving MIDC Hubs &amp; Pan-India</span>
+              <span>Jetwan Society, Khamla, Nagpur, Maharashtra<br>Serving MIDC Hubs &amp; Pan-India</span>
             </li>
             <li>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
